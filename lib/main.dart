@@ -41,14 +41,26 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+  length: 3,
+    child: Scaffold(
       appBar: AppBar(
         title: Text(
           'TodoTestapp',
           key: Key('main-app-title'),
         ),
+        bottom:
+            TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.directions_car)),
+          Tab(icon: Icon(Icons.directions_transit)),
+          Tab(icon: Icon(Icons.directions_bike)),
+        ],
+      ),
+      
         centerTitle: true,
       ),
+      
       
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -115,7 +127,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
   ),
       
       body: list.isEmpty ? emptyList() : buildListView()
-    );
+     )
+     
+      );
   }
 
   Widget emptyList(){
@@ -247,7 +261,14 @@ TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
       @override
       Widget build(BuildContext context) {
 
-        final emailField = TextField(
+        final emailField = TextFormField(
+          validator: (value) {
+          if (value.isEmpty) {
+              return 'Please enter some text';
+    }
+    return null;
+  },
+
           obscureText: false,
           style: style,
           decoration: InputDecoration(
@@ -256,7 +277,14 @@ TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
         );
-        final passwordField = TextField(
+        final passwordField = TextFormField(
+
+           validator: (value) {
+          if (value.isEmpty) {
+              return 'Please enter some text';
+    }
+    return null;
+           },
           obscureText: true,
           style: style,
           decoration: InputDecoration(
