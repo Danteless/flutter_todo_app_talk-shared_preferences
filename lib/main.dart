@@ -42,7 +42,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-  length: 3,
+  length: 4,
     child: Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,6 +54,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
         tabs: [
           Tab(icon: Icon(Icons.directions_car)),
           Tab(icon: Icon(Icons.directions_transit)),
+          Tab(icon: Icon(Icons.directions_bike)),
           Tab(icon: Icon(Icons.directions_bike)),
         ],
       ),
@@ -99,7 +100,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
               
         ListTile(
           leading: Icon(Icons.message),
-          title: Text('inbox'),
+          title: Text('Admin'),
           subtitle: Text('A sub test'),
           onTap: (){
                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -108,7 +109,15 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
         ),
         ListTile(
           leading: Icon(Icons.account_circle),
-          title: Text('tasks'),
+          title: Text('Chef de Projet'),
+          subtitle: Text('A sub test'),
+           onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Developper'),
           subtitle: Text('A sub test'),
            onTap: (){
                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -126,7 +135,20 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
     ),
   ),
       
-      body: list.isEmpty ? emptyList() : buildListView()
+      body: 
+     TabBarView(
+    children: [ 
+      list.isEmpty ? emptyList() : buildListView(),
+      new Text("This is call Tab View"),
+      new Text("This is chat Tab View"),
+      new Text("This is chat Tab View"),
+     ],
+
+),
+     
+     
+     
+     
      )
      
       );
